@@ -5,7 +5,16 @@ using UnityEngine;
 public class CONCharacter : CONEntity
 {
     // 캐릭터가 가지고 있는 고유 스탯 선언
+    public float Hp { get; set; }
     // FSM, Detect 기능 등
+    public enum eState
+    {
+        None = -1,
+        Idle,
+        Move,
+        Attack,
+        Die
+    }
     // 고유 캐릭터 스탯 데이터
     // 애니메이션 정보
 
