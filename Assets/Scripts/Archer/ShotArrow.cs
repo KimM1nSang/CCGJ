@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShotArrow : MonoBehaviour
 {
-    const float shootingDelay = 2.5f;
+    const float shootingDelay = 1.5f;
 
     private GameObject arrowPrefab;
 
@@ -20,13 +20,15 @@ public class ShotArrow : MonoBehaviour
 
     IEnumerator ShootingArrow(float delay)
     {
+        yield return new WaitForSeconds(1.2f);
+
         while (true)
         {
-            yield return new WaitForSeconds(delay);
-
             // 화살 발사
             GameObject go = Instantiate(arrowPrefab, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 50.0f));
-            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * 8;
+            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * 20;
+
+            yield return new WaitForSeconds(delay);
         }
     }
 }
