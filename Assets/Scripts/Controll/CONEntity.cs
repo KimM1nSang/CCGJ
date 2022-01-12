@@ -89,10 +89,10 @@ public class CONEntity : MonoBehaviour
         firstUpdate();
     }
 
-    public virtual void LateUpdate()
+   /* public virtual void LateUpdate()
     {
         float nextYpos = myTrm.position.y + myVelocity.y * Time.deltaTime;
 
         myTrm.position = new Vector3(myTrm.position.x + myVelocity.x * Time.deltaTime, nextYpos, myTrm.position.z);
-    }
+    }*/
 }

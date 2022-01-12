@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CONCharacter : CONEntity
 {
     // 캐릭터가 가지고 있는 고유 스탯 선언
     public float Hp;
+    public float HpMax;
     public float ATK;
     public float DEF;
 
@@ -15,10 +17,14 @@ public class CONCharacter : CONEntity
 
     public CONCharacter attackTarget = null;
 
+    public LayerMask myMask;
     public LayerMask attackLayer;
 
     protected float attackTime;
     protected float attackTimeMax = 10;
+
+    [SerializeField]
+    protected Image HpBar;
     // FSM, Detect 기능 등
     public enum eState
     {
@@ -42,6 +48,9 @@ public class CONCharacter : CONEntity
     public override void OnEnable()
     {
         base.OnEnable();
+
+        Hp = HpMax;
+
     }
 
     public override void OnDisable()
@@ -57,16 +66,28 @@ public class CONCharacter : CONEntity
     protected override void firstUpdate()
     {
         base.firstUpdate();
+        HpBar.rectTransform.localScale = new Vector3(Hp / HpMax, 1, 1);
     }
 
     public override void Update()
     {
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayer);
+        if (col.Length > 0)
+        {
+            ChangeState(eState.Attack);
+        }
+        else
+        {
+            ChangeState(eState.Move);
+        }
+
         StateCheck();
         base.Update();
     }
     public void CharacterSetup(float hp,float atk,float def,float moveSpeed,Vector3 moveDir,float attackRadius,float attackTime)
     {
-        Hp = hp;
+        HpMax = hp;
+        Hp = HpMax;
         ATK = atk;
         DEF = def;
         MoveSpeed = moveSpeed;
@@ -76,7 +97,17 @@ public class CONCharacter : CONEntity
     }
     public virtual void Damage(float damage)
     {
-        Hp -= damage - DEF >= 0 ? (damage - DEF): 1;
+        if((damage - DEF) >= Hp)
+        {
+            Hp = 0;
+            ChangeState(eState.Die);
+        }
+        else
+        {
+            Hp -= damage - DEF >= 0 ? (damage - DEF) : 1;
+        }
+        HpBar.rectTransform.localScale = new Vector3(Hp / HpMax, 1, 1);
+
     }
     #region FSM
     public void StateCheck()
@@ -176,12 +207,13 @@ public class CONCharacter : CONEntity
 
     public virtual void AttackEnter()
     {
-
+        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayer);
+        attackTarget = col[UnityEngine.Random.Range(0, col.Length)].GetComponent<CONCharacter>();
     }
 
     public virtual void DieEnter()
     {
-
+        SetActive(false);
     }
 
     public virtual void Idle()
@@ -190,12 +222,27 @@ public class CONCharacter : CONEntity
     }
     public virtual void Move()
     {
-        myVelocity.z = 0;
-        gameObject.transform.Translate(myVelocity * MoveSpeed * Time.deltaTime);
+        float nextYpos = myTrm.position.y + myVelocity.y * Time.deltaTime;
+
+        myTrm.position = new Vector3(myTrm.position.x + myVelocity.x * MoveSpeed * Time.deltaTime, nextYpos, myTrm.position.z);
     }
     public virtual void Attack()
     {
-
+        if (attackTarget == null)
+        {
+            attackTime = attackTimeMax;
+            ChangeState(eState.Move);
+        }
+        else
+        {
+            attackTime -= Time.deltaTime;
+            if (attackTime <= 0)
+            {
+                attackTime = attackTimeMax;
+                attackTarget.Damage(ATK);
+            }
+        }
+      
     }
     public virtual void Die()
     {

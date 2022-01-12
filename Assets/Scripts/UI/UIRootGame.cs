@@ -5,8 +5,17 @@ using UnityEngine.UI;
 
 public class UIRootGame : MonoBehaviour
 {
-    [SerializeField]
-    private Image testImage;
+    /*[SerializeField]
+    private Image testImage;*/
+    public Image HpBar;
+    public Text HpText;
+
+    public Button Skill1Btn;
+    public Button Skill2Btn;
+
+    public Button gameSpeedBtn;
+
+    public Button menuBtn;
 
     void Awake()
     {
@@ -15,13 +24,14 @@ public class UIRootGame : MonoBehaviour
 
     private void Update() 
     {
+        //HpBar.rectTransform.localScale = new Vector3(curHp / maxHp, 1, 1);
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            List<string> keyList = new List<string>(Global.spritesDic.Keys);
+            /*List<string> keyList = new List<string>(Global.spritesDic.Keys);
             int randomIdx = Random.Range(0, keyList.Count - 1);
             
             testImage.sprite = Global.spritesDic[keyList[randomIdx]];
-            testImage.SetNativeSize();
+            testImage.SetNativeSize();*/
         }
     }
 
