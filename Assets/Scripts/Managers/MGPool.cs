@@ -76,7 +76,7 @@ public class MGPool : MonoBehaviour
 
     private GameObject instantiateObj(ePrefabs inObj)
     {
-        //Debug.Log(inObj.ToString());
+        Debug.Log(inObj.ToString());
         GameObject myGo = GameObject.Instantiate(Global.prefabsDic[inObj]) as GameObject;
 
         return myGo;

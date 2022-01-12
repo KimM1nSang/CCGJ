@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8238184195958500214}
   - component: {fileID: 8238184195958500215}
+  - component: {fileID: -7873201165862575823}
   - component: {fileID: 3180379225451419382}
   m_Layer: 0
   m_Name: MonsterSlime
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7873201165862575823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238184195958500212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f86b83701cd944c0a1d349ea845bece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myKind: 1003
+  myTrm: {fileID: 0}
+  myVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3180379225451419382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +115,10 @@ MonoBehaviour:
   myKind: 0
   myTrm: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
+  Hp: 10
+  ATK: 0
+  DEF: 0
+  MoveSpeed: 1
   attackRadius: 2
   attackTarget: {fileID: 0}
   attackLayer:

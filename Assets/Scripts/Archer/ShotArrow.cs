@@ -10,7 +10,7 @@ public class ShotArrow : MonoBehaviour
 
     private void Awake()
     {
-        arrowPrefab = Resources.Load<GameObject>("Prefabs/Game/Archer/Arrow");
+        arrowPrefab = Global.prefabsDic[ePrefabs.Arrow];
     }
 
     private void Start() // 나중에 게임 시작으로 바꾸기
@@ -26,7 +26,7 @@ public class ShotArrow : MonoBehaviour
         {
             // 화살 발사
             GameObject go = Instantiate(arrowPrefab, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 50.0f));
-            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * 20;
+            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * Random.Range(15, 20);
 
             yield return new WaitForSeconds(delay);
         }
