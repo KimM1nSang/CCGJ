@@ -7,6 +7,6 @@ public class CONMonsterSlime : CONMonster
     public override void Start()
     {
         base.Start();
-        CharacterSetup(100, 10, 2, 10, Vector3.left, 2, 2);
+        CharacterSetup(100, 1, 1, .5f, Vector3.left, 2, 10);
     }
 }

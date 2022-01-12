@@ -101,6 +101,7 @@ MonoBehaviour:
   myKind: 1003
   myTrm: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
+  charName: "\uBAAC\uC2A4\uD130 \uC2AC\uB77C\uC784"
   Hp: 10
   HpMax: 0
   ATK: 0

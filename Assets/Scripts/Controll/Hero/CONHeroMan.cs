@@ -10,4 +10,22 @@ public class CONHeroMan : CONHero
         base.Start();
         CharacterSetup(100, 10, 2, 0, Vector3.right, 5, .5f);
     }
+    public override void Attack()
+    {
+        if (attackTarget == null)
+        {
+            attackTime = attackTimeMax;
+            ChangeState(eState.Move);
+        }
+        else
+        {
+            attackTime -= Time.deltaTime;
+            if (attackTime <= 0)
+            {
+                GetComponentInChildren<Animator>().SetTrigger("attack");
+                attackTime = attackTimeMax;
+                attackTarget.Damage(ATK);
+            }
+        }
+    }
 }

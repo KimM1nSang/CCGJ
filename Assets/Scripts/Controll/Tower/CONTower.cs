@@ -16,4 +16,9 @@ public class CONTower : CONCharacter
         GameSceneClass.gUiRootGame.GameOver();
         base.DieEnter();
     }
+    public override void Damage(float damage, CONCharacter dieReason = null)
+    {
+        base.Damage(damage, dieReason);
+        GameSceneClass.gUiRootGame.HpBar.rectTransform.localScale = new Vector3(Hp / HpMax, 1, 1);
+    }
 }

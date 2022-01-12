@@ -49,6 +49,7 @@ MonoBehaviour:
   myKind: 0
   myTrm: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
+  charName: "\uD788\uC5B4\uB85C"
   Hp: 0
   HpMax: 0
   ATK: 0
