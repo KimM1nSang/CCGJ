@@ -5,11 +5,24 @@ using UnityEngine.UI;
 
 public class Wave : MonoBehaviour
 {
+    public static Wave Instance {get; private set;}
+
     public Image waveImage;
     private Text waveText;
+    bool isStarted = false;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         waveText = GetComponentInChildren<Text>();
     }
 
@@ -24,12 +37,19 @@ public class Wave : MonoBehaviour
         {
             waveImage.GetComponent<RectTransform>().sizeDelta += new Vector2(waveImage.GetComponent<RectTransform>().localScale.x + Time.deltaTime * 5f, 0);
         }
+
+        if(isStarted && GameManager.Instance.conMonstersList.Count <= 0)
+        {
+            isStarted = false;
+            WaveTextUpdate();
+        }
     }
 
-    private void WaveTextUpdate()
+    public static void WaveTextUpdate()
     {
         GameManager.IncreaseWave();
-        waveText.text = string.Format("WAVE {0}", GameManager.Instance.Wave);
-        waveImage.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 50);
+        Wave.Instance.waveText.text = string.Format("WAVE {0}", GameManager.Instance.WaveVal);
+        Wave.Instance.waveImage.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 50);
+        Wave.Instance.isStarted = true;
     }
 }

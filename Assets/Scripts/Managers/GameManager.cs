@@ -6,9 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
 
-    private SpawnManager SPM;
+    public List<CONEntity> conMonstersList = new List<CONEntity>();
+
     private int wave = 0;
-    public int Wave
+    public int WaveVal
     {
         get
         {
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public static void IncreaseWave()
     {
-        GameManager.Instance.Wave++;
+        GameManager.Instance.WaveVal++;
         GameManager.Instance.StartCoroutine(GameManager.Instance.Spawn());
     }
 
@@ -43,7 +44,8 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < 10; i++)
         {
-            GameSceneClass.gMGPool.CreateObj(ePrefabs.MonsterSlime, Random.insideUnitCircle);
+            CONEntity slime = GameSceneClass.gMGPool.CreateObj(ePrefabs.MonsterSlime, Random.insideUnitCircle);
+            conMonstersList.Add(slime);
             yield return new WaitForSeconds(Random.Range(0.4f, 0.7f));
         }
     }

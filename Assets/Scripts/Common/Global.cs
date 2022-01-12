@@ -19,6 +19,7 @@ public enum ePrefabs
     Map,
     Arrow,
     ArrowShot,
+    Archers,
     GameSpeedControll,
     HEROS = 1000,
     HeroMan,
