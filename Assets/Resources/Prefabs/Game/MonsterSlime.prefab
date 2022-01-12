@@ -96,6 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e00f796404ca64dacd91f0ad0dbe77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myKind: 0
+  myTrm: {fileID: 0}
+  myVelocity: {x: 0, y: 0, z: 0}
+  attackRadius: 2
+  attackTarget: {fileID: 0}
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 320
+  state: 0
 --- !u!1001 &8238184195885201139
 PrefabInstance:
   m_ObjectHideFlags: 0

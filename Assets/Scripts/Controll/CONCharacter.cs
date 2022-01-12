@@ -5,13 +5,20 @@ using UnityEngine;
 public class CONCharacter : CONEntity
 {
     // 캐릭터가 가지고 있는 고유 스탯 선언
-    public float Hp { get; set; }
-    public float ATK { get; set; }
-    public float DEF { get; set; }
+    public float Hp;
+    public float ATK;
+    public float DEF;
 
-    public float MoveSpeed { get; set; } = 1;
+    public float MoveSpeed = 1;
 
-    public Vector3 moveDir = new Vector3();
+    public float attackRadius = 2;
+
+    public CONCharacter attackTarget = null;
+
+    public LayerMask attackLayer;
+
+    protected float attackTime;
+    protected float attackTimeMax = 10;
     // FSM, Detect 기능 등
     public enum eState
     {
@@ -28,6 +35,7 @@ public class CONCharacter : CONEntity
     public override void Awake()
     {
         base.Awake();
+        attackTime = attackTimeMax;
         state = eState.None;
     }
 
@@ -56,6 +64,21 @@ public class CONCharacter : CONEntity
         StateCheck();
         base.Update();
     }
+    public void CharacterSetup(float hp,float atk,float def,float moveSpeed,Vector3 moveDir,float attackRadius,float attackTime)
+    {
+        Hp = hp;
+        ATK = atk;
+        DEF = def;
+        MoveSpeed = moveSpeed;
+        this.myVelocity = moveDir;
+        this.attackRadius = attackRadius;
+        this.attackTimeMax = attackTime;
+    }
+    public virtual void Damage(float damage)
+    {
+        Hp -= damage - DEF >= 0 ? (damage - DEF): 1;
+    }
+    #region FSM
     public void StateCheck()
     {
         switch (state)
@@ -167,8 +190,8 @@ public class CONCharacter : CONEntity
     }
     public virtual void Move()
     {
-        moveDir.z = 0;
-        gameObject.transform.Translate(moveDir * MoveSpeed * Time.deltaTime);
+        myVelocity.z = 0;
+        gameObject.transform.Translate(myVelocity * MoveSpeed * Time.deltaTime);
     }
     public virtual void Attack()
     {
@@ -178,4 +201,5 @@ public class CONCharacter : CONEntity
     {
 
     }
+    #endregion
 }
