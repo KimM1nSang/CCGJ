@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        
+    }
+
     public static void IncreaseWave()
     {
         GameManager.Instance.WaveVal++;

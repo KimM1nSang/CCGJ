@@ -904,6 +904,7 @@ GameObject:
   - component: {fileID: 1745581583059985031}
   - component: {fileID: 3328253614822866015}
   - component: {fileID: 3884765091534322788}
+  - component: {fileID: 8300972051597562032}
   m_Layer: 5
   m_Name: TimeButton
   m_TagString: Untagged
@@ -1014,6 +1015,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8300972051597562032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609710833491995879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cbc168a547465478b5ebc8f5f2a008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5984601728717446603
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,8 +25,8 @@ public class ShotArrow : MonoBehaviour
         while (true)
         {
             // 화살 발사
-            GameObject go = Instantiate(arrowPrefab, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 50.0f));
-            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * Random.Range(15, 20);
+            GameObject go = Instantiate(arrowPrefab, this.transform.position, Quaternion.Euler(0.0f, 0.0f, 40.0f));
+            go.GetComponent<Rigidbody2D>().velocity = go.transform.right * Random.Range(10, 15);
 
             yield return new WaitForSeconds(delay);
         }

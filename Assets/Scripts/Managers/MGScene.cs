@@ -148,6 +148,7 @@ public class MGScene : MonoBehaviour
             GameObject.Instantiate(Global.prefabsDic[ePrefabs.MGPool]);
             GameObject.Instantiate(Global.prefabsDic[ePrefabs.MGGame]);
             GameObject.Instantiate(Global.prefabsDic[ePrefabs.Archers]);
+            GameObject.Instantiate(Global.prefabsDic[ePrefabs.HeroMan]);
         }
 
         // if (curScene == eSceneName.Game)
