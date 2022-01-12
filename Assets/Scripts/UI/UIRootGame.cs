@@ -17,6 +17,9 @@ public class UIRootGame : MonoBehaviour
 
     public Button menuBtn;
 
+    public GameObject gameOverPanel;
+
+    public Text dieReasonText;
     void Awake()
     {
         GameSceneClass.gUiRootGame = this;
@@ -38,5 +41,10 @@ public class UIRootGame : MonoBehaviour
     public void TestFunc()
     {
         print("call UIRootGame");
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 }

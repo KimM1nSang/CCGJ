@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CONCharacter : CONEntity
 {
     // 캐릭터가 가지고 있는 고유 스탯 선언
+    public string charName = "";
+
     public float Hp;
     public float HpMax;
     public float ATK;
@@ -26,6 +28,8 @@ public class CONCharacter : CONEntity
 
     [SerializeField]
     protected Image HpBar;
+
+    protected CONCharacter dieReason;
     // FSM, Detect 기능 등
     public enum eState
     {
@@ -100,11 +104,12 @@ public class CONCharacter : CONEntity
         this.attackRadius = attackRadius;
         this.attackTimeMax = attackTime;
     }
-    public virtual void Damage(float damage)
+    public virtual void Damage(float damage , CONCharacter dieReason = null)
     {
         if((damage - DEF) >= Hp)
         {
             Hp = 0;
+            this.dieReason = dieReason;
             ChangeState(eState.Die);
         }
         else
@@ -212,6 +217,7 @@ public class CONCharacter : CONEntity
 
     public virtual void AttackEnter()
     {
+        Debug.Log("AAAAA");
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayer);
         attackTarget = col[UnityEngine.Random.Range(0, col.Length)].GetComponent<CONCharacter>();
     }
