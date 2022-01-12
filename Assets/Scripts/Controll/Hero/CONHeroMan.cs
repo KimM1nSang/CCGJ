@@ -8,6 +8,6 @@ public class CONHeroMan : CONHero
     public override void Start()
     {
         base.Start();
-        CharacterSetup(100, 10, 2, 0, Vector3.right, 5, 10);
+        CharacterSetup(100, 10, 2, 0, Vector3.right, 5, .5f);
     }
 }

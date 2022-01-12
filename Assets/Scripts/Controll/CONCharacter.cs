@@ -20,6 +20,7 @@ public class CONCharacter : CONEntity
     public LayerMask myMask;
     public LayerMask attackLayer;
 
+    [SerializeField]
     protected float attackTime;
     protected float attackTimeMax = 10;
 
@@ -71,15 +72,19 @@ public class CONCharacter : CONEntity
 
     public override void Update()
     {
-        Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayer);
-        if (col.Length > 0)
+        if(state != eState.Attack)
         {
-            ChangeState(eState.Attack);
+            Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, attackRadius, attackLayer);
+            if (col.Length > 0)
+            {
+                ChangeState(eState.Attack);
+            }
+            else
+            {
+                ChangeState(eState.Move);
+            }
         }
-        else
-        {
-            ChangeState(eState.Move);
-        }
+        
 
         StateCheck();
         base.Update();

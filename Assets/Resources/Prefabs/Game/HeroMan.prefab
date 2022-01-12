@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829840726230469087}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.25, y: -0.9, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -4.44, y: -2.03, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 1331509149719384249}
   - {fileID: 7290109730311924056}
@@ -56,9 +56,13 @@ MonoBehaviour:
   MoveSpeed: 0
   attackRadius: 2
   attackTarget: {fileID: 0}
+  myMask:
+    serializedVersion: 2
+    m_Bits: 0
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
+  attackTime: 0
   HpBar: {fileID: 8997263827851047621}
   state: 0
 --- !u!70 &829840726230469084
