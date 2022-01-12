@@ -22,8 +22,8 @@ public class ArrowPrefab : MonoBehaviour
         if(other.transform.CompareTag("Monster"))
         {
             other.gameObject.GetComponent<CONMonsterSlime>().Damage(attackDamage);
+            Destroy(this.gameObject); // 나중에 풀링
         }
 
-        Destroy(this.gameObject); // 나중에 풀링
     }
 }

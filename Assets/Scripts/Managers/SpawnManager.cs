@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    private MGPool mgPool;
+    MGPool mgPool;
 
-    private void Awake() {
-        mgPool = this.GetComponent<MGPool>();
+    private void Awake()
+    {
+        mgPool = GetComponent<MGPool>();
     }
 
-    public void Spawn()
+    public void StartSpawn()
     {
-        mgPool.CreateObjAsChild(ePrefabs.MonsterSlime, this.transform.position, this.transform);
+        StartCoroutine(SpawnEnemy());
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        mgPool.CreateObjAsChild(ePrefabs.MonsterSlime, new Vector3(-5f, Random.Range(-2.0f, 2.0f), 0), this.transform);
     }
 }

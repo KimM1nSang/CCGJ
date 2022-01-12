@@ -39,7 +39,7 @@ public class MGGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            CONEntity heroCon = GameSceneClass.gMGPool.CreateObj(ePrefabs.HeroGirl, Random.insideUnitCircle);
+            CONEntity heroCon = GameSceneClass.gMGPool.CreateObj(ePrefabs.MonsterSlime, Random.insideUnitCircle);
             heroConList.Add(heroCon);
         }
 
@@ -50,7 +50,6 @@ public class MGGame : MonoBehaviour
                 heroConList[heroConList.Count - 1].SetActive(false);
                 heroConList.RemoveAt(heroConList.Count - 1);
             }
-
         }
 
 

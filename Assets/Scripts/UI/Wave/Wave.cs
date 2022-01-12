@@ -7,12 +7,10 @@ public class Wave : MonoBehaviour
 {
     public Image waveImage;
     private Text waveText;
-    SpawnManager spManager;
 
     private void Awake()
     {
         waveText = GetComponentInChildren<Text>();
-        spManager = GetComponent<SpawnManager>();
     }
 
     private void Start()
@@ -31,7 +29,6 @@ public class Wave : MonoBehaviour
     private void WaveTextUpdate()
     {
         GameManager.IncreaseWave();
-        spManager.Spawn();
         waveText.text = string.Format("WAVE {0}", GameManager.Instance.Wave);
         waveImage.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 50);
     }
